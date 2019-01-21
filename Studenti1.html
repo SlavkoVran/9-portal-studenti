@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<head>
+  <title>Objekti</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+</head>
+<html>
+<body>
+
+<h1>Studenti - portal</h1>
+
+Ime: <input type="text" id="ime"> 
+<br><br>Pezime: <input type="text" id="prezime"> 
+<br><br>Broj indeksa: <input type="text" id="indeks" > 
+<br><br>Broj ocena: <input type="number" id="br_ocena" >
+<br><br>Ocene: <input type="number" id="ocena" maxlength="2"><input type="button" value="Dodaj ocenu"  onclick="dodaj_ocenu()">
+<br><br><input type="button" value="Dodaj studenta"  onclick="dodaj()">
+
+<br><br>
+<input type="button" value="Prikazi podatke za studenta:"  onclick="prikazi()"><input type="text" placeholder="broj indeksa" id="info">
+<br>
+<br><p id="par" ></p>
+
+<br><br>
+<br><input type="button" value="Prikazi najbolji prosek"  onclick="prikaziNajboljeg()">
+<br><p id="par1" ></p>
+
+<script>
+
+//konstruktorska funkcija za objekat Student
+function Student(a,b,c,d,e){
+this.ime=a;
+this.prezime=b;
+this.indeks=c;
+this.br_ocena=d;
+this.ocene=e;
+}
+//prototipske funkcije
+Student.prototype.prosek=function(){
+zb=0;
+for (i=0;i<this.ocene.length;i++){
+zb+=Number(this.ocene[i]);
+}
+	this.pros=Number((zb/this.ocene.length).toFixed(2))
+console.log(studenti);
+//return ;
+}
+
+
+Student.prototype.ispit=function(){
+
+return Number(30-this.br_ocena);
+}
+
+Student.prototype.imeIprezime=function(){
+return this.ime+" "+this.prezime;
+}
+
+//cuvanje ocene, dugme Dodaj ocenu
+ocene=new Array();//niz u kom ce se cuvati ocene dok se ne kreira objekat Student 
+i=1;
+function dodaj_ocenu(){
+br_ocena=document.getElementById("br_ocena").value;
+if (br_ocena<=30 && br_ocena!=null){
+	if (i<=br_ocena){
+		if (document.getElementById("ocena").value!=""){
+			ocene.push(document.getElementById("ocena").value);
+			i++;
+			console.log(i)
+			console.log(ocene)}
+		else window.alert ("Niste uneli ocenu!");
+	}
+	else {
+	document.getElementById("ocena").setAttribute('readonly', 'readonly'); 
+	document.getElementById("ocena").style.backgroundColor="red";
+	window.alert("Uneli ste izabran broj ocena!");
+	
+	}
+}
+else window.alert("Maksimalni broj ocena je 30");
+}
+
+//cuvanje informacija o studentu, dugme Dodaj
+studenti=new Array();//niz za cuvanje kreiranih objekata Student
+function dodaj(){
+if (i>br_ocena){
+ime=document.getElementById("ime").value;
+prezime=document.getElementById("prezime").value;
+indeks=document.getElementById("indeks").value;
+br_ocena=document.getElementById("br_ocena").value;
+studenti.push(new Student(ime,prezime,indeks,br_ocena,ocene));
+ocene=[]; //brisanje niza za cuvanje ocena tekuceg studenta
+i=1;
+//vracanje forme u pocetno stanje, da bi nov student mogao da se upise
+document.getElementById("ime").value=null;
+document.getElementById("prezime").value=null;
+document.getElementById("indeks").value=null;
+document.getElementById("br_ocena").value=null;
+document.getElementById("ocena").value=null;
+document.getElementById("ocena").removeAttribute('readonly'); 
+document.getElementById("ocena").style.backgroundColor="white";
+window.alert ("Uspesan unos podataka");
+
+console.log(studenti)}
+else window.alert ("Morate upisati sve ocene!");
+}
+
+//prikaz podataka o studentu za unet broj indeksa, dugme Prikazi
+function prikazi(){
+info=document.getElementById("info").value;
+
+for (j=0;j<studenti.length;j++){
+studenti[j].prosek();
+	if (studenti[j].indeks==info){
+		document.getElementById("par").innerHTML="Indeks: "+info+"<br>"+"Student: "+studenti[j].ime+" "+studenti[j].prezime+"<br>"+"Prosek: "+studenti[j].pros+"<br>"+"Broj ispita do kraja studija: "+Number(30-studenti[j].br_ocena);
+		document.getElementById("info").value="";
+		}
+	}
+}
+//funkcija za najbolji prosek
+function prikaziNajboljeg(){
+uspeh=new Array();//niz u kom ce se smestati prosecne ocene svakog upisanog studenta
+
+for (let j=0;j<studenti.length;j++){
+	studenti[j].prosek();
+	uspeh[j]=studenti[j].pros;
+	console.log(uspeh);
+}
+//sortiranje elemenata u nizu uspeh po opadajucem redosledu - od najveceg do najmanjeg
+for (let i=0;i<uspeh.length;i++){
+	for (let j=i+1;j<uspeh.length;j++){
+		if (uspeh[i]<uspeh[j]){
+		pom=uspeh[i];
+		uspeh[i]=uspeh[j];
+		uspeh[j]=pom;
+		}
+	}
+}
+//u sortiranom nizu, prvi element ce biti najveci - uspeh[0]
+document.getElementById("par1").innerHTML=uspeh[0];
+}
+</script>
+</body>
+</html>
+
+
+
+
+

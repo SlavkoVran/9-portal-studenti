@@ -1,0 +1,108 @@
+.prviDeo{
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#063f6d;
+
+}
+
+.sacuvajStudenta{
+    display: inline;
+    justify-content: space-around;
+}
+
+.drugiDeo{
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #063f6d;
+
+}
+
+.margin{ 
+    margin: 10px
+}
+.KreirajNovogStudenta{
+    background-color: #063f6d;
+    width: 200px;
+    height: 100px;
+
+}
+.pretragaStudenata{
+background-color: #063f6d;
+width: 200px;
+    height: 100px
+}
+.unosOcena{
+background-color:  #063f6d;
+width: 200px;
+height: 100px
+}
+
+.glavnaStranica{
+    border: 2px solid  #063f6d;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.podaciStudenta{
+    border: 1px solid;
+    
+}
+th{
+    width: 200px;
+    height: 70px;
+}
+/* .hide{
+    display: none;
+} */
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.velicinaFonta{
+    color: white;
+    font-size: 1.2em;
+}
+
+.predmetiIzgled{
+    width: 250px;
+    height: 50px;
+
+}
+
+.predmetiGlavni{
+    width: 700px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#1668ac;
+
+}
+
+select{
+    width: 100px;
+    height: 50px;
+    background-color: #1668ac;
+    color: white;
+}
+
+.unosOcenaOmotac{
+    display: flex;
+}
+
+
